@@ -1,3 +1,4 @@
+import pandas as pd
 
 # class PhoneBook:
 #
@@ -51,8 +52,8 @@ class PhoneBook:
             raise TypeError('Number must be integer')
 
     @myphonebook.deleter
-    def myphonebook(self, name):
-       del self.listphonebook[name]
+    def myphonebook(self):
+       del self.listphonebook
 
     def __str__(self):
         list_book = ''
@@ -63,6 +64,8 @@ class PhoneBook:
 person = PhoneBook()
 person.myphonebook = 'Lisa', 125457
 person.myphonebook = 'Lis', 125457
+person.myphonebook = 'Don', 547825457
 print(person)
-del person.myphonebook['Lis']
+print(person.myphonebook['Lisa'])
+del person.myphonebook['Lisa']
 print(person)
