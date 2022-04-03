@@ -46,7 +46,7 @@ class PhoneBook:
     def myphonebook(self, arg):
         name, number = arg
         if name in self.listphonebook:
-            raise NameError(f'Such a name exists')
+            raise NameError(f'Name {name} exists')
         self.listphonebook[name] = number
         if not isinstance(number, int):
             raise TypeError('Number must be integer')
@@ -63,19 +63,32 @@ class PhoneBook:
         list = pd.DataFrame(list_book)
         return list
 
+    def save_note(self):
+        table = ''
+        for name, number in self.listphonebook.items():
+            table += f'{name}: {number}\n'
+        file = open('phonebook.txt', 'a+', encoding='utf-8')
+        for i in table.split(': '):
+            print(i)
+            if i not in file:
+                file.write(i + ' ')
+        return table
+
     def __str__(self):
         table = ''
         for name, number in self.listphonebook.items():
-            table += f'{name} - {number}\n'
+            table += f'{name} - +{number}\n'
         return table
+
 
 person = PhoneBook()
 person.myphonebook = 'Lisa', 125457
 person.myphonebook = 'Lis', 125457
 person.myphonebook = 'Don', 547825457
-print(person.get_table())
-print()
-print(person)
+person.myphonebook = 'Dak', 451575515
+print(person.save_note())
+
+
 
 
 
