@@ -67,11 +67,13 @@ class PhoneBook:
         table = ''
         for name, number in self.listphonebook.items():
             table += f'{name}: {number}\n'
-        file = open('phonebook.txt', 'a+', encoding='utf-8')
+        file = open('phonebook.txt').read()
         for i in table.split(': '):
-            print(i)
-            if i not in file:
-                file.write(i + ' ')
+            if i in file:
+                continue
+            file = open('phonebook.txt', 'a+', encoding='utf-8')
+            file.write(i + ' ')
+
         return table
 
     def __str__(self):
@@ -86,6 +88,8 @@ person.myphonebook = 'Lisa', 125457
 person.myphonebook = 'Lis', 125457
 person.myphonebook = 'Don', 547825457
 person.myphonebook = 'Dak', 451575515
+print(person.save_note())
+person.myphonebook = 'Dracula', 75515
 print(person.save_note())
 
 
