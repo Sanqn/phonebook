@@ -55,17 +55,28 @@ class PhoneBook:
     def myphonebook(self):
        del self.listphonebook
 
-    def __str__(self):
-        list_book = ''
+    def get_table(self):
+        list_book = {}
         for name, number in self.listphonebook.items():
-            list_book += f'{name}: {number}\n'
-        return list_book
+            list_book['Name'] = list_book.get('Name', []) + [name]
+            list_book['Number'] = list_book.get('Number', []) + [number]
+        list = pd.DataFrame(list_book)
+        return list
+
+    def __str__(self):
+        table = ''
+        for name, number in self.listphonebook.items():
+            table += f'{name} - {number}\n'
+        return table
 
 person = PhoneBook()
 person.myphonebook = 'Lisa', 125457
 person.myphonebook = 'Lis', 125457
 person.myphonebook = 'Don', 547825457
+print(person.get_table())
+print()
 print(person)
-print(person.myphonebook['Lisa'])
-del person.myphonebook['Lisa']
-print(person)
+
+
+
+
