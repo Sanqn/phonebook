@@ -30,7 +30,7 @@ import pandas as pd
 # new_person.updatelistbook('Lisa', +375292045578)
 # new_person.delitelistbook('Lisa')
 # print(new_person)
-# print(new_person.getlistbook('Dok'))
+# print(new_person.getlistbook('Doom'))
 
 
 class PhoneBook:
